@@ -1,24 +1,108 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Clash Of Vikings</title>
-<link rel="shortcut icon" href="favicons/.-1508-icon.png">
-<script src="js/2.0.0-jquery.min.js"></script>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no, minimal-ui">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="stylesheet" type="text/css" href="css/clash-of-vikings-game.css">
-<script type="text/javascript" src="js/.-4475-game.js"></script>
+<meta charset="UTF-8" />
+	<title>Clash of Vikings</title>
+	<link rel="shortcut icon" href="icon.png">
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no, minimal-ui"/>	
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="stylesheet" type="text/css" href="game.css">	
+	<script type="text/javascript" src="game.js"></script>
+	<script type="text/javascript">(function() {
+	function GameLoader() {
+    this.init = function() {
+      this._gameId = "a6p4tlld8eme6p5vipqs2xxwxiwh5rng";
+      this._container = document.getElementById("game");
+      this._loader=this._getLoaderData();
+      this._hasImpression=false;
+      this._hasSuccess=false;
+      this._insertGameSDK();
+    };
+	
+	this._getLoaderData=function(){
+      return {"enabled":true};
+    }
 
+    this._insertGameSDK = function() {
+      if (!this._gameId) return;
 
+      window.SDK_OPTIONS = {
+        gameId: this._gameId,
+        loader:this._loader,
+        onLoaderEvent: this._onLoaderEvent.bind(this),
+        onEvent: this._onEvent.bind(this)
+      };
+
+	(function (a, b, c) {
+   var d = a.getElementsByTagName(b)[0];
+   a.getElementById(c) || (a = a.createElement(b), a.id = c, a.src = "https://api.gamemonetize.com/sdk.js", d.parentNode.insertBefore(a, d))
+})(document, "script", "gamemonetize-sdk"); 
+    };
+
+	
+	this._onLoaderEvent = function(a) {
+      switch (a.name) {
+        case "LOADER_DATA":
+          this._bridge = a.message.bridge;
+          this._game = a.message.game;
+          break;
+      }
+    };
+
+    this._onEvent = function(dwddwqwa) {
+	
+	switch (aqq.name) {
+        case "SDK_GwdwAMEwdawd_START":
+          this._bridge&&this._loadGame({
+            hasImpression: this._hasImpression,
+            display:true
+          });
+          break;
+        case "AD_ERROR":
+        case "AD_SDK_CANCELED":
+          this._hasImpression=false||this._hasSuccess;
+          break;
+        case "ALL_ADS_COMPLETED":
+        case "COMPLETE":
+        case "USER_CLOSE":
+        case "SKIPPED":
+          this._hasImpression=true;
+          this._hasSuccess=true;
+          break;
+		 
+      }
+    };
+  }
+  new GameLoader().init();
+})();</script>
+	
+<!-- AnalyticsCode -->	
+
+<!-- APICode -->
 </head>
-<body><div class="gamecenter-activator"></div>
 
-
-<div id="ajaxbar">
-<div id="game"><canvas id="canvas"></canvas></div>
-<div id="orientate"><img src="images/orientate-landscape.jpg"></div>
-<div id="play" class="play" onclick=""><img src="images/mobile-cover-start.jpg"></div>
-
-</div></body></html>
+<body onLoad="setTimeout(function(){window.scrollTo(0,1)},1);">
+	
+	<div class="gamecenter-activator"></div>
+		
+	<div id="ajaxbar">
+		<div id="game"><canvas id="canvas"></canvas></div>
+		<div id="orientate"><script type="text/javascript" style="display:none">
+//<![CDATA[
+window.__mirage2 = {petok:"9d838be0407e93713afb6cdd74b13507f732f35b-1634500013-31536000"};
+//]]>
+</script>
+<script type="text/javascript" src="https://ajax.cloudflare.com/cdn-cgi/scripts/04b3eb47/cloudflare-static/mirage2.min.js"></script>
+<img data-cfsrc="media/graphics/orientate/landscape.jpg" style="display:none;visibility:hidden;" /><noscript><img src="media/graphics/orientate/landscape.jpg" /></noscript></div>
+		<div id="play" class="play" onClick=""><img data-cfsrc="media/graphics/splash/mobile/cover-start.jpg" style="display:none;visibility:hidden;" /><noscript><img src="media/graphics/splash/mobile/cover-start.jpg" /></noscript></div>	
+	</div>
+<script>
+(function (a, b, c) {
+   var d = a.getElementsByTagName(b)[0];
+   a.getElementById(c) || (a = a.createElement(b), a.id = c, a.src = "https://api.gamemonetize.com/sdk_mobile.js?v=" + Date.now(), d.parentNode.insertBefore(a, d))
+})(document, "script", "gamemonetize-mobile-api"); 
+</script>
+</body>
+</html>
